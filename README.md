@@ -1,2 +1,9 @@
 # SRAfinder
 Use crawler to quickly obtain SRAid based on GEOid
+This tool is used to get SRA information use GSM number.There are some requests to use it:
+
+1.The input file must be xlsx file, and the sheet contains GSM number must be named as "sheet1".
+2.Several python packages are necessary, including "warnings,openpyxl,requests,re,xlsxwriter,tqdm".
+
+Currently it can only get SRXid,SRRid and layout.
+
