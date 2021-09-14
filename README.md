@@ -4,7 +4,7 @@ This tool is used to get SRA information use GSM number.There are some requests 
 
 1.The input file must be xlsx file, and the sheet contains GSM number must be named as "sheet1".
 
-2.Several python packages are necessary, including "warnings,openpyxl,requests,re,xlsxwriter,tqdm".
+2.Several python packages are necessary, including "openpyxl,requests,re,xlsxwriter".
 
 3.Put the GSM number file and the python file into same directory.
 
