@@ -1,5 +1,5 @@
 # SRAfinder
-Use crawler to quickly obtain SRAid based on GEOid
+Use crawler to quickly obtain SRAinfo based on GEOid
 
 This tool is used to get SRA information use GSM number. There are some requests to use it:
 
