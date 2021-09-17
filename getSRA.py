@@ -28,8 +28,8 @@ def getSRR(SRX_index):
         # print("start fetching data")
         content = requests.get(url).text
         # print("fetching data finished") 
-        m = re.findall("SRR[0-9]+", content)
-        srr = (m.group(0))
+        m = set(re.findall("SRR[0-9]+", content))
+        srr = ";".join(m)
         return srr
     except:
         return ""  
@@ -40,7 +40,7 @@ def getLibrary(SRX_index):
     url = url_header+SRX_index
     try:
         content = requests.get(url).text 
-        m = re.search("Layout:\ <span>(.*)<\/span><\/div><div>", content)
+        m = re.search("Layout:\ <span>([A-Z]+)<\/span><\/div>", content)
         library = (m.group(1))
         return library
     except:
@@ -50,7 +50,7 @@ def getLibrary(SRX_index):
 
 def processGSMList(gsm_source, gsm_target):
     wb_obj = openpyxl.load_workbook(gsm_source)
-    sheet = wb_obj['sheet1']
+    sheet = wb_obj['Sheet1']
     srx_values_texts = []
     srr_values_texts = []
     library_values_texts = []
@@ -62,21 +62,15 @@ def processGSMList(gsm_source, gsm_target):
         
         srx_values_texts = getSRX(cell_value)
         library_values_texts = getLibrary(cell_value)
-        srr_values = getSRR(cell_value)
-        srr_values_texts = ";".join(srr_values)
-
-        # print(srx_values_texts)
-        # print(library_values_texts)
-        # print(type(srr_values_texts))
-
+        srr_values_texts = getSRR(cell_value)
 
         worksheet.write(i-2,0,cell_value)
         worksheet.write(i-2,1,srx_values_texts)
         worksheet.write(i-2,2,library_values_texts)
+        worksheet.write(i-2,3,srr_values_texts)
 
     workbook.close()
 
         
     
-processGSMList(gsm_source_path+"/"+gsm_source_file, "SRAfinder_output.xlsx")
-
+processGSMList(gsm_source_path+"/"+gsm_source_file, "SRAfinder_"+gsm_source_file)
