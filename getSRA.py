@@ -56,7 +56,7 @@ def processGSMList(gsm_source, gsm_target):
     library_values_texts = []
     workbook = xlsxwriter.Workbook(gsm_target)
     worksheet = workbook.add_worksheet()
-    for i in tqdm(range(2,row)):
+    for i in tqdm(range(2,row+1)):
         cell_name = "A" + str(i)
         cell_value = sheet[cell_name].value
         
